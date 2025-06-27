@@ -3,14 +3,14 @@ DROP DATABASE IF EXISTS old_age_home_meds;
 CREATE DATABASE old_age_home_meds;
 USE old_age_home_meds;
 
--- 👩‍⚕️ Caregivers table
+-- Caregivers table
 CREATE TABLE Caregivers (
     caregiver_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL
 );
 
--- 👴 Residents (elderly users)
+-- Residents (elderly users)
 CREATE TABLE Residents (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     caregiver_id INT,
@@ -21,7 +21,7 @@ CREATE TABLE Residents (
     FOREIGN KEY (caregiver_id) REFERENCES Caregivers(caregiver_id)
 );
 
--- 💊 Medicines prescribed to residents
+-- Medicines prescribed to residents
 CREATE TABLE Medicines (
     medicine_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT,
@@ -34,7 +34,7 @@ CREATE TABLE Medicines (
     FOREIGN KEY (user_id) REFERENCES Residents(user_id)
 );
 
--- ⏰ Reminders for each medicine
+-- Reminders for each medicine
 CREATE TABLE Reminders (
     reminder_id INT AUTO_INCREMENT PRIMARY KEY,
     medicine_id INT,
@@ -42,7 +42,7 @@ CREATE TABLE Reminders (
     FOREIGN KEY (medicine_id) REFERENCES Medicines(medicine_id)
 );
 
--- 📋 Log of medicine intake
+-- Log of medicine intake
 CREATE TABLE MedicineLog (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
     medicine_id INT,
